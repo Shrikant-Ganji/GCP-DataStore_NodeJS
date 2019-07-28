@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var config = require('./config');
 const {Datastore} = require('@google-cloud/datastore');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
@@ -9,10 +8,7 @@ app.use(morgan('short'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-const datastore = new Datastore({
-    projectId:config.projectId,
-    keyFile:config.keyFile
-});
+const datastore = new Datastore();
 
 //Welcome Page
 app.get('/', (req, res, next)=>{
